@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      forceProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// define whether to match ubar at the reference point (useful to remove mean flow)
+defineT         true;
+readU           false;//true;
+Uexpress        false;//true;
+matchUbar       false;//true;
+Ubar            Ubar [0 1 -1 0 0 0 0 ] (0 0 0);
+locr            (0.0001 0.499 0.0001);
+Utolerance      0.00005;
+fdir            fdir [0 1 -2 0 0 0 0 ] (1.0 0 0);
+
+// * * * * * * * * * * * * * following are for presure * * * * * * * * * * * * * * * //
+tilt            tilt [ 0 0 0 0 0 0 0 ] 0;
+gradPAMP1        gradPAMP1 [ 1 -2 -2 0 0 0 0 ] (816.814 0 0 );     // pressure osci amp
+gradPAMP2        gradPAMP2 [ 1 -2 -2 0 0 0 0 ] (301.59289474462 0 0 );     // pressure osci amp
+gradPOSC        gradPOSC [ 1 -2 -2 0 0 0 0 ] (816.814 0 0 );  // pressure osci real value
+gradPMEAN        gradPMEAN        [ 1 -2 -2 0 0 0 0 ] (0 0 0 ); // mean pressure
+UMEAN            UMEAN        [ 0 1 -1 0 0 0 0 ] (0 0 0 ); // mean pressure
+UAMP1            UAMP1        [ 0 1 -1 0 0 0 0 ] (0.65 0 0 ); // vel amplitude u1
+UAMP2            UAMP2        [ 0 1 -1 0 0 0 0 ] (0.06 0 0 ); // vel amplitude u2
+oscpT1           oscpT1 [ 0 0 0 0 0 0 0 ] 5.0;       // osci period
+oscpT2           oscpT2 [ 0 0 0 0 0 0 0 ] 2.5;       // osci period
+initTheta1      initTheta1 [ 0 0 0 0 0 0 0] 0;    // keep the sin/cos form
+initTheta2      initTheta2 [ 0 0 0 0 0 0 0] -90;  // transfer sin to cos, and vice verse
+t0              t0 [0 0 0 0 0 0 0 ] 0.138769675965202;
+Cvm             Cvm [ 0 0 0 0 0 ] 0;                // Virtual/Added Mass coefficient
+Cl              Cl [ 0 0 0 0 0 ] 0;                 // Lift force coefficient
+Ct              Ct [ 0 0 0 0 0 ] 0;                 // Eddy diffusivity coefficient for phase a
+debugInfo       true;
+
+Cvm             Cvm [ 0 0 0 0 0 ] 0;                // Virtual/Added Mass coefficient
+
+Cl              Cl [ 0 0 0 0 0 ] 0;                 // Lift force coefficient
+
+Ct              Ct [ 0 0 0 0 0 ] 0;                 // Eddy diffusivity coefficient for phase a
+
+debugInfo	true;
+ 
+// * * * * * * * * * * * * end of definition of pressure * * * * * * * * * * * * * //
+
+// added for initial settling (step 1) and flow development (step 2)
+
+Tstep1           Tstep1 [0 0 0 0 0 0 0 ] 0;  // time for initial settling
+Tstep2           Tstep2 [0 0 0 0 0 0 0 ] 25; // time for flow development
+

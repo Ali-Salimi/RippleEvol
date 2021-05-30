@@ -1,0 +1,97 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+expressions
+ (
+	alpha
+    	{
+		field alpha;
+		keepPatches 1;
+                expression "inletprofilealpha((-0.05*(sin((pos().x-0.45/4)*2*pi/0.45)))+pos().y-0.015)";
+                variables       "";
+        	lookuptables    (
+		{
+        	name            inletprofilealpha;
+        	fileName        "$FOAM_CASE/1DV/MATLAB/alpha.xy";
+        	outOfBounds     clamp;
+		}
+		);
+/*
+	}
+       p
+        {
+                field p;
+                keepPatches 1;
+                expression "inletprofilep(pos().y)";
+                variables       "";
+                lookuptables    (
+                {
+                name            inletprofilep;
+                fileName        "$FOAM_CASE/1DV/MATLAB/p.xy";
+                outOfBounds     clamp;
+                }
+                );
+        }
+
+       k 
+        {
+                field k;
+                keepPatches 1;
+                expression "inletprofilek((-0.05*(sin((pos().x-0.41/4)*2*pi/0.41)))+pos().y-0.015)";
+                variables       "";
+                lookuptables    (
+                {
+                name            inletprofilek;
+                fileName        "$FOAM_CASE/1DV/MATLAB/k.xy";
+                outOfBounds     clamp;
+                }
+                );
+
+        }
+        epsilon
+        {
+                field epsilon;
+                keepPatches 1;
+                expression "inletprofileepsilon((-0.05*(sin((pos().x-0.41/4)*2*pi/0.41)))+pos().y-0.015)";
+                variables       "";
+                lookuptables    (
+                {
+                name            inletprofileepsilon;
+                fileName        "$FOAM_CASE/1DV/MATLAB/epsilon.xy";
+                outOfBounds     clamp;
+                }
+                );
+
+        }
+        Theta 
+        {
+                field Theta;
+                keepPatches 1;
+                expression "inletprofileTheta((-0.05*(sin((pos().x-0.41/4)*2*pi/0.41)))+pos().y-0.015)";
+                variables       "";
+                lookuptables    (
+                {
+                name            inletprofileTheta;
+                fileName        "$FOAM_CASE/1DV//MATLAB/Theta.xy";
+                outOfBounds     clamp;
+                }
+                );
+/**/
+        }
+ );
+
+// ************************************************************************* //

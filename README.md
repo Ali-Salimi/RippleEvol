@@ -2,7 +2,7 @@
 The repository contains the cases for JGR-Earth Surface (2021JF006132R) publication.
 7 cases are simulated to study the effect  of wave period on ripple evolution and equilibrium geometry.
 for each case the set up files (initial and boundary condition, solvers and schemes) are provided.
-###############################################################################################################
+##################################################################
 To simulate each case:
 A- Run the 1DV (sheet flow case for t=0-250sec)
 (1) foamClearPolyMesh
